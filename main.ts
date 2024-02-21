@@ -1,3 +1,3 @@
-basic.forever(function on_forever() {
-    
+basic.forever(function () {
+    servos.P0.setAngle(180)
 })
