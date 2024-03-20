@@ -6,7 +6,10 @@
         "radio": "*",
         "microphone": "*",
         "maqueenPlusV2": "github:dfrobot/pxt-dfrobot_maqueenplus_v20#v2.2.0",
-        "servo": "*"
+        "servo": "*",
+        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.5",
+        "Grove": "github:seeed-studio/pxt-grove#v0.6.0",
+        "ContinuousServo": "github:tinkertanker/pxt-continuous-servo#v0.0.6"
     },
     "files": [
         "main.blocks",

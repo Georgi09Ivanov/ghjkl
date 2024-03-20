@@ -1,13 +1,21 @@
-// Set servo angle at pin P13 (Servo 1) on start
-maqueen.servoRun(maqueen.Servos.S1, 90)
+direction = False
+U = 0
+DFRobotMaqueenPlus.I2CInit()
+DFRobotMaqueenPlus.PID(PID.OFF)
 
-// Example: Move the servo motor up and down
-basic.forever(function () {
-    // Move servo up (angle 0)
-    maqueen.servoRun(maqueen.Servos.S1, 0)
-    basic.pause(1000) // Adjust this delay based on your servo's response time
-    
-    // Move servo down (angle 180)
-    maqueen.servoRun(maqueen.Servos.S1, 180)
-    basic.pause(1000) // Adjust this delay based on your servo's response time
-})
+def on_forever():
+    global U, direction
+    U = DFRobotMaqueenPlus.ultraSonic(PIN.P1, PIN.P2)
+    if U < 20 and U != 0:
+        direction = Math.random_boolean()
+        if direction == True:
+            DFRobotMaqueenPlus.mototRun(Motors.M1, Dir.CW, 100)
+            DFRobotMaqueenPlus.mototRun(Motors.M2, Dir.CW, 0)
+            basic.pause(1000)
+        else:
+            DFRobotMaqueenPlus.mototRun(Motors.M1, Dir.CW, 0)
+            DFRobotMaqueenPlus.mototRun(Motors.M2, Dir.CW, 100)
+            basic.pause(1000)
+    else:
+        DFRobotMaqueenPlus.mototRun(Motors.ALL, Dir.CW, 100)
+basic.forever(on_forever)
